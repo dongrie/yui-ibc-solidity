@@ -40,9 +40,9 @@ abstract contract IBCHost is IBCStore, Context, ModuleManager {
     }
 
     /**
-     * @dev setExpectedTimePerBlock sets expected time per block.
+     * @dev _setExpectedTimePerBlock sets expected time per block.
      */
-    function setExpectedTimePerBlock(uint64 expectedTimePerBlock_) public virtual {
+    function _setExpectedTimePerBlock(uint64 expectedTimePerBlock_) internal {
         expectedTimePerBlock = expectedTimePerBlock_;
     }
 }

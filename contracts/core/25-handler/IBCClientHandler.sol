@@ -22,13 +22,6 @@ abstract contract IBCClientHandler {
     }
 
     /**
-     * @dev registerClient registers a new client type into the client registry
-     */
-    function registerClient(string calldata clientType, ILightClient client) public virtual {
-        ibcClient.functionDelegateCall(abi.encodeWithSelector(IIBCClient.registerClient.selector, clientType, client));
-    }
-
-    /**
      * @dev createClient creates a new client state and populates it with a given consensus state
      */
     function createClient(IBCMsgs.MsgCreateClient calldata msg_) external returns (string memory clientId) {
@@ -44,5 +37,12 @@ abstract contract IBCClientHandler {
      */
     function updateClient(IBCMsgs.MsgUpdateClient calldata msg_) external {
         ibcClient.functionDelegateCall(abi.encodeWithSelector(IIBCClient.updateClient.selector, msg_));
+    }
+
+    /**
+     * @dev _registerClient registers a new client type into the client registry
+     */
+    function _registerClient(string calldata clientType, ILightClient client) internal {
+        ibcClient.functionDelegateCall(abi.encodeWithSelector(IIBCClient.registerClient.selector, clientType, client));
     }
 }

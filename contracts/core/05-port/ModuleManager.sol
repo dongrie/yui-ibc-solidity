@@ -9,9 +9,9 @@ import "./IIBCModule.sol";
  */
 abstract contract ModuleManager {
     /**
-     * @dev bindPort binds to an unallocated port, failing if the port has already been allocated.
+     * @dev _bindPort binds to an unallocated port, failing if the port has already been allocated.
      */
-    function bindPort(string calldata portId, address moduleAddress) public virtual {
+    function _bindPort(string calldata portId, address moduleAddress) internal {
         require(validatePortIdentifier(bytes(portId)), "invalid portId");
         require(moduleAddress != address(this) && Address.isContract(moduleAddress), "invalid moduleAddress");
         claimCapability(portCapabilityPath(portId), moduleAddress);

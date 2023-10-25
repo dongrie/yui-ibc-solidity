@@ -22,21 +22,21 @@ contract OwnableIBCHandler is IBCHandler, Ownable {
     /**
      * @dev registerClient registers a new client type into the client registry
      */
-    function registerClient(string calldata clientType, ILightClient client) public override onlyOwner {
-        super.registerClient(clientType, client);
+    function registerClient(string calldata clientType, ILightClient client) public onlyOwner {
+        super._registerClient(clientType, client);
     }
 
     /**
      * @dev bindPort binds to an unallocated port, failing if the port has already been allocated.
      */
-    function bindPort(string calldata portId, address moduleAddress) public override onlyOwner {
-        super.bindPort(portId, moduleAddress);
+    function bindPort(string calldata portId, address moduleAddress) public onlyOwner {
+        super._bindPort(portId, moduleAddress);
     }
 
     /**
      * @dev setExpectedTimePerBlock sets expected time per block.
      */
-    function setExpectedTimePerBlock(uint64 expectedTimePerBlock_) public override onlyOwner {
-        super.setExpectedTimePerBlock(expectedTimePerBlock_);
+    function setExpectedTimePerBlock(uint64 expectedTimePerBlock_) public onlyOwner {
+        super._setExpectedTimePerBlock(expectedTimePerBlock_);
     }
 }
