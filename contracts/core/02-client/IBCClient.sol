@@ -17,6 +17,9 @@ contract IBCClient is IBCHost, IIBCClient, IIBCClientErrors {
      * @dev createClient creates a new client state and populates it with a given consensus state
      */
     function createClient(MsgCreateClient calldata msg_) external override returns (string memory clientId) {
+        if (true) {
+            revert IBCClientClientNotFound("Debug Client");
+        }
         address clientImpl = clientRegistry[msg_.clientType];
         if (clientImpl == address(0)) {
             revert IBCClientUnregisteredClientType(msg_.clientType);
